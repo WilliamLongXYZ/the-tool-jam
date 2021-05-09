@@ -85,7 +85,7 @@ def generate_racial_diversity():
         if i+1 < len(races_present):
             racial_diversity = random.randint(1, total_percentage)
         racial_diversities.append(racial_diversity)
-        total_percentage -= racial_diversity
+        if total_percentage > racial_diversity: total_percentage -= racial_diversity 
 
     settlement_information.append(races_present)
     settlement_information.append(racial_diversities)
