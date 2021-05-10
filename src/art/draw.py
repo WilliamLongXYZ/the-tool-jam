@@ -1,7 +1,6 @@
 print(__name__)
 
 hex_bytes = ['0x00']
-print(0xff)
 CEND = '\33[0m'
 
 CBLACK = '\033[30m'
@@ -9,16 +8,23 @@ CRED = '\033[91m'
 CWHITE = '\033[37m'
 
 
-def read_byte(byte):
-    pass
+def read_byte(byte, canvas, location):
+    canvas[location[1]][location[0]] = byte
 
 def print_byte(byte):
     if byte == '0x00':
-        print(CBLACK + byte + CEND)
+        print(CBLACK + '0' + CEND, end=' ')
     if byte == '0x80':
-        print(CRED + byte + CEND)
+        print(CRED + '0' + CEND, end=' ')
     if byte == '0xff':
-        print(CWHITE + byte + CEND)
+        print(CWHITE + '0' + CEND, end=' ')
+
+def print_canvas(canvas):
+    for row in canvas:
+        print('\n')
+        for pixel in row:
+            print_byte(pixel)
+    print('\n\n\n\n')
     
 
 def str_to_hex(string): return hex(int(string, 16))
@@ -43,13 +49,19 @@ canvas = [
     ['0xff', '0xff', '0xff', '0xff'],
 ]
 
+
 while 1:
+    location = [0, 0]
     for row in canvas:
-        input("Row (start): " + f'{row}')
         for pixel in row:
-            pixel = '0x' + input("Pixel is currently: "+ f'{pixel}'+"  ")
+            pixel = '0x' + input("\nPixel is currently: "+ f'{pixel}'+"  ")
             if pixel == '0x': pixel = str_to_hex('0xff')
             pixel = test_byte(pixel)
-            print_byte(pixel)
-        input("Row (end): " + str(row) + "\n\n\n")
-    input(canvas)
+            print(location)
+            read_byte(pixel, canvas, location)
+            location[0] += 1
+        location[0] = 0
+        location[1] += 1
+    
+    
+    print_canvas(canvas)
