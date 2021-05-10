@@ -1,0 +1,9 @@
+character.py:
+    Name generator
+
+world.py:
+    settlements:
+        shops
+        people
+    geography:
+        geographical features
