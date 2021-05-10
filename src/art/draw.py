@@ -7,6 +7,12 @@ canvas = [
     ['ff', 'ff', 'ff', 'ff'],
 ]
 
-for row in canvas:
-    for pixel in row:
-        print(pixel)
+while 1:
+    for row in canvas:
+        input("Row (start): " + str(row))
+        for pixel in row:
+            pixel = input("Pixel is currently: "+pixel+"  ")
+            if not pixel: pixel = 'ff'
+            print(pixel)
+        input("Row (end): " + str(row) + "\n\n\n")
+    input(canvas)
