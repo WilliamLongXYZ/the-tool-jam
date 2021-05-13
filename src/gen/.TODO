@@ -7,3 +7,11 @@ world.py:
         people
     geography:
         geographical features
+
+universe.py
+    universe
+        solar system
+            stars
+            dwarfs
+            terrestrials
+            gas giants
