@@ -1,3 +1,7 @@
-git_config.sh
+.git_config.sh
+git_config
 .replit
 main
+src/__pycache__
+src/gen/__pycache__
+

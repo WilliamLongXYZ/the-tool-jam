@@ -1,4 +1,6 @@
-# from gen import character, world
+from gen import character
+from gen import world
 from gen import galaxy
 
-print(__name__)
+
+galaxy.main()

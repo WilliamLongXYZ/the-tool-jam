@@ -1,15 +1,15 @@
-from gen import functions as randex
+from gen import randex
 
 import random
 
 
-print(__name__)
-
-def generate_star_system():
+def generate_star_system(solar_masses=None, min_sm = 0, max_sm = 20):
     generate_star()
 
-def generate_star():
-    solar_masses = randex.randfloat(0, 20)
+def generate_star(solar_masses=None, min_sm = 0, max_sm = 20):
+    if solar_masses == None:
+        solar_masses = randex.randfloat(min_sm, max_sm)
+    solar_masses = float(solar_masses)
     luminosity = solar_masses**4
     diameter = solar_masses**0.74
     surface_temperature = solar_masses**0.505
@@ -38,7 +38,16 @@ def generate_galaxy():
         within spiral galaxy
         1/2 - 2/3 out from center
         not in the arms of the galaxy
-
     '''
 
-generate_star_system()
+def main():
+    planet_mass = input("What is the mass of your planet? Leave blank for default of random.    ")
+    if planet_mass == '':
+        minimum = input("What is the minimum mass you want your planet to be? Default is zero.  ")
+        maximum = input("What is the maximum mass you want your planet to be? Default is twenty.    ")
+        if maximum == '' and minimum == '':
+            generate_star()
+            return
+        generate_star(None, float(minimum), float(maximum))
+        return
+    generate_star(planet_mass)

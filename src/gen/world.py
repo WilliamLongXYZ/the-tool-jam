@@ -1,17 +1,11 @@
+from gen import randex
+
 import random
 
 
-print(__name__)
-
-race_list = [
-    "dwarf", "elf", "human"
-    ]
-geographical_feature_list = [
-    "mountains", "lakes", "rivers", "valleys"
-    ]
-political_affiliations = [
-    "Libertarian", "Authoritarian", "Imperial", "Theocratic"
-    ]
+race_list = ["dwarf", "elf", "human"]
+geographical_feature_list = ["mountains", "lakes", "rivers", "valleys"]
+political_affiliations = ["Libertarian", "Authoritarian", "Imperial", "Theocratic"]
 geographical_feature_dict = {}
 mountain_locations = {
                       "north": False,
@@ -39,13 +33,9 @@ settlement_information = []
 for feature in geographical_feature_list:
     geographical_feature_dict[feature] = None
 
-def rand_bool(): return bool(random.getrandbits(1))
-
 def generate_settlement():
     races, diversity = generate_racial_diversity()
-        
     local_geography = generate_local_geography()
-
     present_politics = generate_political_affiliations()
 
 def determine_races(amount, possible=race_list):
@@ -60,9 +50,11 @@ def determine_races(amount, possible=race_list):
     return races
 
 def generate_local_geography(geographical_features = geographical_feature_list, feature_dict = geographical_feature_dict):
+    # TODO: shops +feature
+    # TODO: people +feature
     for feature in geographical_feature_list:
         feature_locations = {"North": False, "East": False, "South": False, "West": False, }
-        feature_present = rand_bool()
+        feature_present = randex.randbool()
         feature_dict[feature] = feature_present
         if feature_present:
             feature_dict[feature] = feature_locations
@@ -93,7 +85,7 @@ def generate_racial_diversity():
 def generate_political_affiliations():
     affiliations_present_amnt = len(political_affiliations)
     affiliations = political_affiliations.copy()
-    # races_present = determine_races(races_present_amnt, races)
+    races_present = determine_races(races_present_amnt, races)
     affiliations_present = political_affiliations.copy()
     total_percentage = 100
     affiliation_percentages = []
@@ -112,5 +104,6 @@ def print_settlement():
     for i in settlement_information:
         print(i)
 
-generate_settlement()
-print_settlement()
+def main():
+    generate_settlement()
+    print_settlement()

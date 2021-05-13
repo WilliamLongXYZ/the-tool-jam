@@ -1,13 +1,6 @@
 import random
 
-print(__name__)
-
-'''
-Name generator
-Sex generator
-Occupation
-Political Affiliation
-'''
+# TODO: Name generator +feature
 
 political_party_list = ["anarchist", "libertarian", "authoritarian"]
 occupation_list = ["blacksmith", "soldier", "merchant"]
@@ -46,11 +39,9 @@ def generate_political_affiliation(parties=political_party_list):
     character_info.append(political_affiliation)
     return political_affiliation
 
-
 def print_character_information(character_info):
     for i in character_info:
         print(i)
-
 
 def generate_character():
     race = generate_race()
@@ -61,7 +52,6 @@ def generate_character():
 
     return race, style, sex, occupation, party
 
-generate_character() 
-
-
-print_character_information(character_info)
+def main():
+    generate_character()
+    print_character_information(character_info)
