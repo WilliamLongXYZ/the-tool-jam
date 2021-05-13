@@ -2,4 +2,4 @@ import random
 
 
 def randfloat(minimum, maximum):
-    pass
+    return minimum + (maximum-minimum)*random.random()

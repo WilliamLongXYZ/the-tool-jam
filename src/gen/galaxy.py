@@ -1,14 +1,15 @@
-import random
-print(__name__)
+from gen import functions as randex
 
-min = 0
-max = 20
+import random
+
+
+print(__name__)
 
 def generate_star_system():
     generate_star()
 
 def generate_star():
-    solar_masses = min + (max-min)*random.random()
+    solar_masses = randex.randfloat(0, 20)
     luminosity = solar_masses**4
     diameter = solar_masses**0.74
     surface_temperature = solar_masses**0.505
@@ -39,3 +40,5 @@ def generate_galaxy():
         not in the arms of the galaxy
 
     '''
+
+generate_star_system()
