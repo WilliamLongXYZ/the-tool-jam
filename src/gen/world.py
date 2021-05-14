@@ -1,5 +1,4 @@
-# from gen import randex
-import randex
+from gen import randex
 
 import random
 
@@ -114,6 +113,3 @@ def main():
         print_settlement()
         settlement_information = []
     input("Press the enter key to close.")
-
-if __name__ == '__main__':
-    main()
