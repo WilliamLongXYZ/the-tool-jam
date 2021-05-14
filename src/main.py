@@ -1,23 +1,23 @@
 from gen import character, world, galaxy
 
+
+def info():
+    print('\n\n')
+    print("This program is my submission for the itch.io Tool Jam, and can generate a star, settlement, or character for an RPG.\n")
+    print("It was inspired by Artifexian on YouTube.")
+    print("You can find the source at https://github.com/Xarvveron/the-tool-jam , and you can download the tool and all updates from https://xarvveron.itch.io/world-generator")
+
 def main():
+    print("Commands:\n[character] or [c]: generate a character\n[settlement] or [town] or [t]: generate a settlement\n[star] or [s]: generate a star\n[info] or [i]: view information about this tool\n\n")
 
-    print("")
-
-
-    generator = input("Would you like to generate a character [character] or [c], a settlement [town] or [t] or [settlement], or a star [star] or [s]?    ")
+    generator = input("What would you like to generate?    ")
     if generator == 'character' or generator == 'c':
         character.main()
     if generator == 'settlement' or generator == 'town' or generator == 't':
         world.main()
     if generator == 'star' or generator == 's' or generator == 'star':
         galaxy.main()
-    if generator == 'info':
+    if generator == 'info' or generator == 'i':
         info()
-
-def info():
-    print('\n\n')
-    print("This program is my submission for the itch.io Tool Jam, and can generate a star, settlement, or character for an RPG.\n")
-    print("You can find the source at https://github.com/Xarvveron/the-tool-jam , and you can download the tool and all updates from https://xarvveron.itch.io/world-generator")
 
 main()
