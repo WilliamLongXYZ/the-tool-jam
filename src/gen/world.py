@@ -3,42 +3,40 @@ from gen import randex
 import random
 
 
-race_list = ["dwarf", "elf", "human"]
+br = '\n\n'
+
 geographical_feature_list = ["mountains", "lakes", "rivers", "valleys"]
 political_affiliations = ["Libertarian", "Authoritarian", "Imperial", "Theocratic"]
 geographical_feature_dict = {}
-mountain_locations = {
-                      "north": False,
+mountain_locations = {"north": False,
                       "east": False,
                       "south": False,
                       "west": False}
-lake_locations     = {
-                      "north": False,
+lake_locations     = {"north": False,
                       "east": False,
                       "south": False,
                       "west": False}
-river_locations    = {
-                      "north": False,
+river_locations    = {"north": False,
                       "east": False,
                       "south": False,
                       "west": False}
-valley_locations   = {
-                      "north": False,
+valley_locations   = {"north": False,
                       "east": False,
                       "south": False,
                       "west": False}
+
 settlement_information = []
 
 
 for feature in geographical_feature_list:
     geographical_feature_dict[feature] = None
 
-def generate_settlement():
-    races, diversity = generate_racial_diversity()
+def generate_settlement(race_list):
+    races, diversity = generate_racial_diversity(race_list)
     local_geography = generate_local_geography()
     present_politics = generate_political_affiliations()
 
-def determine_races(amount, possible=race_list):
+def determine_races(amount, possible):
     races = []
     for i in range(0, amount):
         amount-=1
@@ -52,6 +50,7 @@ def determine_races(amount, possible=race_list):
 def generate_local_geography(geographical_features = geographical_feature_list, feature_dict = geographical_feature_dict):
     # TODO: shops +feature
     # TODO: people +feature
+    # TODO: create function for users to add their own geographical features +feature
     for feature in geographical_feature_list:
         feature_locations = {"North": False, "East": False, "South": False, "West": False, }
         feature_present = randex.randbool()
@@ -59,12 +58,12 @@ def generate_local_geography(geographical_features = geographical_feature_list, 
         if feature_present:
             feature_dict[feature] = feature_locations
             for location, value in feature_dict[feature].items():
-                feature_dict[feature][location] = rand_bool()
+                feature_dict[feature][location] = randex.randbool()
 
     settlement_information.append(geographical_feature_dict)
     return geographical_feature_dict
 
-def generate_racial_diversity():
+def generate_racial_diversity(race_list):
     races_present_amnt = random.randint(1, 3)
     races = race_list.copy()
     races_present = determine_races(races_present_amnt, races)
@@ -85,7 +84,6 @@ def generate_racial_diversity():
 def generate_political_affiliations():
     affiliations_present_amnt = len(political_affiliations)
     affiliations = political_affiliations.copy()
-    races_present = determine_races(races_present_amnt, races)
     affiliations_present = political_affiliations.copy()
     total_percentage = 100
     affiliation_percentages = []
@@ -103,7 +101,20 @@ def generate_political_affiliations():
 def print_settlement():
     for i in settlement_information:
         print(i)
+    print(br)
 
 def main():
-    generate_settlement()
-    print_settlement()
+    races = input("What races would you like to have the possiblity of being included in your settlement? Seperate each with a comma.   ")
+    race_list = races.split(',')
+    print(br)
+    politics = input("What forms of political affiliations would you like to have the possiblity of being included in your settlement? Seperate each with a comma.  ")
+    political_affiliation_list = politics.split(',')
+    print(br)
+    ammount = int(input("How many settlements would you like to generate? Enter an integer greater than or equal to one.    "))
+    global settlement_information
+    
+    for x in range(0, ammount):
+        generate_settlement(race_list)
+        print_settlement()
+        settlement_information = []
+    input("Press the enter key to close.")
