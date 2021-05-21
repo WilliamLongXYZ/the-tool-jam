@@ -1,6 +1,6 @@
-.git_config.sh
-git_config
+compile.sh
+git_config.sh
 .replit
-main
-src/__pycache__
-src/gen/__pycache__
+src/gen/__pycache__/*
+*.o
+*.out

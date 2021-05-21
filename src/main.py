@@ -5,7 +5,7 @@ def info():
     print('\n\n')
     print("This program is my submission for the itch.io Tool Jam, and can generate a star, settlement, or character for an RPG.\n")
     print("It was inspired by Artifexian on YouTube.")
-    print("You can find the source at https://github.com/Xarvveron/the-tool-jam , and you can download the tool and all updates from https://xarvveron.itch.io/world-generator")
+    print("You can find the source at https://github.com/Xarvveron/the-tool-jam , and you can download the tool and all updates from https://xarvveron.itch.io/generator")
 
 def main():
     print("Commands:\n[character] or [c]: generate a character\n[settlement] or [town] or [t]: generate a settlement\n[star] or [s]: generate a star\n[info] or [i]: view information about this tool\n\n")
