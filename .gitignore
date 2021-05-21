@@ -1,6 +1,8 @@
 compile.sh
 git_config.sh
 .replit
+time_python.sh
+src/gen/speedrun.txt
 src/gen/__pycache__/*
 *.o
 *.out
