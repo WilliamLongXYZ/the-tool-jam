@@ -6,6 +6,20 @@ sex_list = ["Male", "Female"]
 global character_info
 character_info = []
 
+def generate_character(races, styles, occupations, parties):
+    race = generate_race(races)
+    style = generate_fighting_style(styles)
+    sex = generate_sex()
+    occupation = generate_occupation(occupations)
+    party = generate_political_affiliation(parties)
+
+    return race, style, sex, occupation, party
+
+def print_character_information(character_info):
+    for i in character_info:
+        print(i)
+    print(br)
+
 def generate_race(races):
     chosen_race = random.choice(races)
 
@@ -36,19 +50,9 @@ def generate_political_affiliation(parties):
     character_info.append(political_affiliation)
     return political_affiliation
 
-def print_character_information(character_info):
-    for i in character_info:
-        print(i)
-    print(br)
 
-def generate_character(races, styles, occupations, parties):
-    race = generate_race(races)
-    style = generate_fighting_style(styles)
-    sex = generate_sex()
-    occupation = generate_occupation(occupations)
-    party = generate_political_affiliation(parties)
 
-    return race, style, sex, occupation, party
+
 
 def main():
     political_affiliations = input("What political affiliations do you want your character(s) to possibly be able to have? Seperate each item with a comma.     ")
@@ -69,4 +73,4 @@ def main():
         generate_character(race_list, style_list, occupation_list, political_party_list)
         print_character_information(character_info)
         character_info = []
-    input("Press the enter key to close.")
+    input("Press ENTER to continue.")
