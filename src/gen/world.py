@@ -107,18 +107,44 @@ def main():
 # while True: generate_racial_diversity(["human", "dragon", "elf", "demon", "dwarf", "angle"])
 # main()
 
-test = ['lorem', 'ipsum', 'dolor']
-amount = 3
-number = random.randint(0, 2)
-l = [i for i in test if i != test[number]]
-print(l)
+
 
 '''
-races = []
-for i in range(amount):                                      # HAVE
-    race_num = random.randint(0, amount+1)                   # NEED          # Choose a random number from the list
-    if race_num >= len(possible): race_num = len(possible)-1 # NEED          # Make sure the number is not too large
-    race = possible[race_num]                                # NEED          # Turn the number into a race
-    possible.remove(race)                                    # NEED          # Prevent repeats
-    races.append(race)                                       # NEED
+def check(amount):
+    print(f'{amount} is amount')
+    n = random.randint(0, amount+1)
+    print(amount, n)
+    race_num = n if n <= len(possible) else len(possible) -1
+    return race_num
+
+for i in range(len(possible)):
+    print(i)
+    h = check(i)
+    g = h if h >= 0 else len(possible) -1
+    races.append(possible[g])
+    possible.remove(possible[g])
+    print(races)
 '''
+
+def determine_races(amount, possible):
+    races = []
+    for i in range(amount):
+        n = random.randint(0, amount+1)
+        race_num = n if n < len(possible) else len(possible) -1
+        race = possible[race_num]
+        possible.remove(possible[race_num])
+        races.append(possible[race_num])
+    input(f'races: {races}')
+
+def _determine_races(amount, possible):
+    races = []
+    for i in range(amount):
+        race_num = random.randint(0, amount+1)
+        if race_num >= len(possible): race_num = len(possible)-1
+        race = possible[race_num]
+        possible.remove(race)
+        races.append(race)
+
+while True:
+    determine_races(3, ['human', 'dragon', 'elf', 'dwarf', 'demon'])
+
