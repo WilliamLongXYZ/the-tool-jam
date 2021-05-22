@@ -11,7 +11,7 @@ def info():
 
 def main():
     while True:
-        print("Commands:\n[character] or [c]: generate a character\n[settlement] or [town] or [t]: generate a settlement\n[star] or [s]: generate a star\n[info] or [i]: view information about this tool\n\n")
+        print("\n\n\nCommands:\n[character] or [c]: generate a character\n[settlement] or [town] or [t]: generate a settlement\n[star] or [s]: generate a star\n[info] or [i]: view information about this tool\n\n")
 
         generator = input("What would you like to generate?    ")
         if generator == 'character' or generator == 'c':
@@ -23,4 +23,4 @@ def main():
         if generator == 'info' or generator == 'i':
             info()
 
-# main()
+main()
