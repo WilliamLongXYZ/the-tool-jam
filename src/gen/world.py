@@ -1,16 +1,13 @@
 from random import randint
-
 from gen.randex import randbool
 
-
-def generate_settlement(race_list, feature_dict, politics_list):
+def generate_settlement(races_possible, politics_possible, feature_dict):
     # TODO: shops +feature
     # TODO: people +feature
-    races, race_percentage = generate_diversity(race_list)
-    politics, pol_percentage = generate_diversity(politics_list)
+    races_present, race_percentage = generate_diversity(races_possible)
+    politics_present, politic_percentage = generate_diversity(politics_possible)
     local_geography = generate_local_geography(feature_dict)
-
-    return races, race_percentage, politics, pol_percentage, local_geography
+    return races_present, race_percentage, present_pol, pol_percentage, local_geo
 
 def determine_present(possible):
     possible = possible.copy()
@@ -32,36 +29,27 @@ def generate_diversity(possible):
         if total_percent > diversity: total_percent -= diversity
     return present, percentages
 
-def generate_local_geography(feat_dic):
-    for feat in feat_dic:
-        feat_dic[feat] = randbool()
-        if feat_dic[feat]:
-            feat_dic[feat] = {"Inside": False, "North": False, "East": False, "South": False, "West": False}
-            for loc in feat_dic[feat]: feat_dic[feat][loc] = randbool()
-    return feat_dic
+def generate_local_geography(feature_dict):
+    for feat in feature_dict:
+        feature_dict[feat] = randbool()
+        if feature_dict[feat]:
+            feature_dict[feat] = {"Inside": False, "North": False, "East": False, "South": False, "West": False}
+            for loc in feature_dict[feat]: feature_dict[feat][loc] = randbool()
+    return feature_dict
 
 def print_settlement(settlement):
+    print('\n')
     for i in settlement:
         print(f'{i}\n')
 
 def main():
-    geographical_features = {}
-    geographical_feature_dict = {}
-    geographical_feature_locations = {}
-
-    races = input(f'\n\n\nWhat races would you like to have the possiblity of being included in your settlement? Seperate each with a comma.   ')
-    race_list = races.split(',')
-    print(f'\n')
-    politics = input(f'What forms of political affiliations would you like to have the possiblity of being included in your settlement? Seperate each with a comma.  ')
-    political_affiliations = politics.split(',')
-    print(f'\n')
-    geography = input(f'What features would you like to have the possiblility of being included in the geography around your settlement? Seperate each with a comma.     ')
-    geographical_feature_list = geography.split(',')
-    for feature in geographical_feature_list:
-        geographical_feature_dict[feature] = None
-        geographical_feature_locations[feature] = {"inside": False, "north": False, "east": False, "south": False, "west": False}
+    races = input(f'\n\nWhat races would you like to have the possiblity of being included in your settlement? Seperate each with a comma.   ')# 141 chars excluding comment
+    races_possible = races.split(',')
+    politics = input(f'\nWhat forms of political affiliations would you like to have the possiblity of being included in your settlement? Seperate each with a comma.  ')# 168 chars excluding comment
+    politics_possible = politics.split(',')
+    geo = input(f'\nWhat features would you like to have the possiblility of being included in the geography around your settlement? Seperate each with a comma.     ')# 172 chars excluding comment
+    geo_dict = dict([x, None] for x in geo.split(","))
     ammount = int(input(f'\nHow many settlements would you like to generate? Enter an integer greater than or equal to one.    '))
     for x in range(ammount):
-        settlement = generate_settlement(race_list, geographical_feature_dict, political_affiliations)
-        print_settlement(settlement)
+        print_settlement(generate_settlement(races_possible, politics_possible, geo_dict))
     input(f'Press ENTER to continue. ')
