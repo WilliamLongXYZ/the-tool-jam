@@ -7,20 +7,31 @@ br = '\n\n'
 settlement_information = []
 
 
-def generate_settlement(race_list, feature_list, feature_dict, politics_list):
+def generate_settlement(race_list, feature_dict, politics_list):
     # TODO: shops +feature
     # TODO: people +feature
     races = generate_racial_diversity(race_list)
-    local_geography = generate_local_geography(feature_list, feature_dict)
+    local_geography = generate_local_geography(feature_dict)
     present_politics = generate_political_affiliations(politics_list)
 
-def determine_races(amount, possible):
+def determine_races(possible):
     races = []
-    for i in range(amount):
-        n = randint(0, amount+1)
+    amnt = randint(1, len(possible))
+    for i in range(amnt):
+        n = randint(0, amnt+1)
         races.append(possible[n if n < len(possible) else len(possible) -1])
         possible.remove(possible[n if n < len(possible) else len(possible) -1])
     return races
+
+def generate_racial_diversity(race_list):
+    percent_t = 100
+    percentages = []
+    present = determine_races(race_list)
+    for i in range(len(present)):
+        race_div = percent_t if i+1 >= len(present) else randint(1, percent_t)
+        percentages.append(race_div)
+        if percent_t > race_div: percent_t -= race_div 
+    return present, percentages
 
 def generate_local_geography(feat_dic):
     for feat in feat_dic:
@@ -29,21 +40,6 @@ def generate_local_geography(feat_dic):
             feat_dic[feat] = {"Inside": False, "North": False, "East": False, "South": False, "West": False}
             for loc in feat_dic[feat]: feat_dic[feat][loc] = randex.randbool()
     return feat_dic
-
-def generate_racial_diversity(race_list):
-    race_list = race_list.copy()
-    races_present = determine_races(randint(1, len(race_list)), race_list)
-    total_percentage = 100
-    racial_diversities = []
-    for i in range(len(races_present)):
-        if i+1 >= len(races_present):
-            racial_diversity = total_percentage
-        else:
-            racial_diversity = randint(1, total_percentage)
-        racial_diversities.append(racial_diversity)
-        if total_percentage > racial_diversity: total_percentage -= racial_diversity 
-
-    return races_present, racial_diversities
 
 def generate_political_affiliations(politic_types):
     affiliations_present_amnt = len(politic_types)
@@ -84,13 +80,12 @@ def main():
     for feature in geographical_feature_list:
         geographical_feature_dict[feature] = None
         geographical_feature_locations[feature] = {"inside": False, "north": False, "east": False, "south": False, "west": False}
-    
 
     ammount = int(input(f'How many settlements would you like to generate? Enter an integer greater than or equal to one.    '))
     print(br)
     global settlement_information
     for x in range(ammount):
-        generate_settlement(race_list, geographical_feature_list, geographical_feature_dict, political_affiliations)
+        generate_settlement(race_list, geographical_feature_dict, political_affiliations)
         print_settlement()
         settlement_information = []
     input(f'Press ENTER to continue. ')
