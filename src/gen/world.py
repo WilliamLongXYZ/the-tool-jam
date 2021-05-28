@@ -1,7 +1,7 @@
 from random import randint
 
-from gen import randex
-
+# from gen import randex
+import randex
 
 br = '\n\n'
 settlement_information = []
@@ -18,22 +18,17 @@ def determine_races(amount, possible):
     races = []
     for i in range(amount):
         n = randint(0, amount+1)
-        race_num = n if n < len(possible) else len(possible) -1
-        races.append(possible[race_num])
-        possible.remove(possible[race_num])
+        races.append(possible[n if n < len(possible) else len(possible) -1])
+        possible.remove(possible[n if n < len(possible) else len(possible) -1])
     return races
 
-def generate_local_geography(feature_list, feature_dict):
-    for feature in feature_list:
-        feature_locations = {"Inside": False, "North": False, "East": False, "South": False, "West": False, }
-        feature_present = randex.randbool()
-        feature_dict[feature] = feature_present
-        if feature_present:
-            feature_dict[feature] = feature_locations
-            for location, value in feature_dict[feature].items():
-                feature_dict[feature][location] = randex.randbool()
-
-    return feature_dict
+def generate_local_geography(feat_dic):
+    for feat in feat_dic:
+        feat_dic[feat] = randex.randbool()
+        if feat_dic[feat]:
+            feat_dic[feat] = {"Inside": False, "North": False, "East": False, "South": False, "West": False}
+            for loc in feat_dic[feat]: feat_dic[feat][loc] = randex.randbool()
+    return feat_dic
 
 def generate_racial_diversity(race_list):
     race_list = race_list.copy()
