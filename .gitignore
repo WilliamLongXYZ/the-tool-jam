@@ -1,6 +1,7 @@
 # Files and directories only relevant to my local development area
 .replit
 *.sh
+*.txt
 
 # Files and directories added by Python
 */*/__pycache__/*
