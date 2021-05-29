@@ -1,7 +1,5 @@
-from gen import randex
-
 import random
-
+from gen import randex
 
 def generate_star_system(solar_masses=None, min_sm = 0, max_sm = 20):
     generate_star()

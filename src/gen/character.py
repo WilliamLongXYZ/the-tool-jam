@@ -1,4 +1,4 @@
-import random
+from random import choice
 
 def generate_character(races, styles, occupations, politics):
     sex = generate_sex()
@@ -10,19 +10,19 @@ def generate_character(races, styles, occupations, politics):
     return race, style, sex, occupation, party
 
 def generate_sex():
-    return random.choice(["Male", "Female"])
+    return choice(["Male", "Female"])
 
 def generate_race(races):
-    return random.choice(races)
+    return choice(races)
 
 def generate_fighting_style(styles):
-    return random.choice(styles)
+    return choice(styles)
 
 def generate_occupation(occupations):
-    return random.choice(occupations)
+    return choice(occupations)
 
 def generate_political_affiliation(politics):
-    return random.choice(politics)
+    return choice(politics)
 
 def print_character_information(character_info):
     for i in character_info:
