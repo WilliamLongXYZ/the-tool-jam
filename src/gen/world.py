@@ -38,7 +38,7 @@ def generate_local_geography(feature_dict):
     return feature_dict
 
 def print_settlement(settlement):
-    print('\n')
+    print(f'\n')
     for i in settlement:
         print(f'{i}\n')
 

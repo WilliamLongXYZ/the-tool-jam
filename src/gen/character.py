@@ -10,7 +10,7 @@ def generate_character(races, styles, occupations, politics):
     return race, style, sex, occupation, party
 
 def generate_sex():
-    return choice(["Male", "Female"])
+    return choice(['Male', 'Female'])
 
 def generate_race(races):
     return choice(races)
@@ -30,12 +30,12 @@ def print_character_information(character_info):
     print(br)
 
 def main():
-    races = input("What races do you want your character(s) to have to possibly be able to have? Seperate each item with a comma.   ").split(',')
-    styles = input("What fighting styles do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ").split(',')
-    occupations = input("What occupations do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ").split(',')
-    politics = input("What political affiliations do you want your character(s) to possibly be able to have? Seperate each item with a comma.     ").split(',')
+    races = input(f'What races do you want your character(s) to have to possibly be able to have? Seperate each item with a comma.   ').split(',')
+    styles = input(f'What fighting styles do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ').split(',')
+    occupations = input(f'What occupations do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ').split(',')
+    politics = input(f'What political affiliations do you want your character(s) to possibly be able to have? Seperate each item with a comma.     ').split(',')
 
-    characters = int(input("How many characters would you like to generate? Input any integer greater than or equal to one.     "))
+    characters = int(input(f'How many characters would you like to generate? Input any integer greater than or equal to one.     '))
     for x in range(0, characters):
         generate_character(races, styles, occupations, politics)
-    input("Press ENTER to continue.")
+    input(f'Press ENTER to continue.')

@@ -15,11 +15,11 @@ def print_info(info):
         print(f'{i}\n')
 
 def main():
-    number = int(input("How many stars would you like to generate?    "))
+    number = int(input(f'How many stars would you like to generate?    '))
     for x in range(0, number):
-        star_mass = input("What is the mass of your star? Default is random.    ")
+        star_mass = input(f'What is the mass of your star? Default is random.    ')
         if star_mass == '':
-            min_max = input("What are the minimum and maximum masses you want your star to be? Seperate with a comma, defaults are zero and twenty.    ").split(',')
+            min_max = input(f'What are the minimum and maximum masses you want your star to be? Seperate with a comma, defaults are zero and twenty.    ').split(',')
             star = generate_star() if min_max == [''] else generate_star(None, float(min_max[0]), float(min_max[1]))
         if star_mass != '': star = generate_star(star_mass)
         print_info(star)
