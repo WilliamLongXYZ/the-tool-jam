@@ -7,7 +7,7 @@ def generate_settlement(races_possible, politics_possible, feature_dict):
     races_present, race_percentage = generate_diversity(races_possible)
     politics_present, politic_percentage = generate_diversity(politics_possible)
     local_geography = generate_local_geography(feature_dict)
-    return races_present, race_percentage, present_pol, pol_percentage, local_geo
+    return races_present, race_percentage, politics_present, politic_percentage, local_geography
 
 def determine_present(possible):
     possible = possible.copy()

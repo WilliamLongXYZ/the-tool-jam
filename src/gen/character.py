@@ -25,17 +25,16 @@ def generate_political_affiliation(politics):
     return choice(politics)
 
 def print_character_information(character_info):
-    for i in character_info:
-        print(i)
-    print(br)
+    for i in character_info: print(f'{i}\n')
 
 def main():
-    races = input(f'What races do you want your character(s) to have to possibly be able to have? Seperate each item with a comma.   ').split(',')
-    styles = input(f'What fighting styles do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ').split(',')
-    occupations = input(f'What occupations do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ').split(',')
-    politics = input(f'What political affiliations do you want your character(s) to possibly be able to have? Seperate each item with a comma.     ').split(',')
+    races = input(f'\nWhat races do you want your character(s) to have to possibly be able to have? Seperate each item with a comma.   ').split(',')
+    styles = input(f'\nWhat fighting styles do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ').split(',')
+    occupations = input(f'\nWhat occupations do you want your character(s) to possibly be able to have? Seperate each item with a comma.   ').split(',')
+    politics = input(f'\nWhat political affiliations do you want your character(s) to possibly be able to have? Seperate each item with a comma.     ').split(',')
 
-    characters = int(input(f'How many characters would you like to generate? Input any integer greater than or equal to one.     '))
+    characters = int(input(f'\nHow many characters would you like to generate? Input any integer greater than or equal to one.     '))
     for x in range(0, characters):
-        generate_character(races, styles, occupations, politics)
-    input(f'Press ENTER to continue.')
+        character = generate_character(races, styles, occupations, politics)
+        print_character_information(character)
+    input(f'\n\nPress ENTER to continue.')
